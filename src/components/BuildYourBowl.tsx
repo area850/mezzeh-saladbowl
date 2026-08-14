@@ -101,10 +101,10 @@ function IngredientSwatch({ option }: { option: Option }) {
 }
 
 function BowlPreview({ picks }: { picks: Record<string, Option | undefined> }) {
-  const base = picks.base;
-  const protein = picks.protein;
-  const toppings = picks.toppings;
-  const dressing = picks.dressing;
+  const base = picks['base'];
+  const protein = picks['protein'];
+  const toppings = picks['toppings'];
+  const dressing = picks['dressing'];
 
   return (
     <svg viewBox="0 0 320 260" className="h-full w-full" role="img" aria-label="Your bowl preview">
@@ -170,10 +170,10 @@ function BowlPreview({ picks }: { picks: Record<string, Option | undefined> }) {
 
 export function BuildYourBowl() {
   const [picks, setPicks] = useState<Record<string, Option | undefined>>({
-    base: STEPS[0].options[0],
-    protein: STEPS[1].options[0],
-    toppings: STEPS[2].options[0],
-    dressing: STEPS[3].options[0],
+    base: STEPS[0]?.options[0],
+    protein: STEPS[1]?.options[0],
+    toppings: STEPS[2]?.options[0],
+    dressing: STEPS[3]?.options[0],
   });
 
   const summary = STEPS.map((s) => picks[s.key]?.name).filter(Boolean).join(" · ");
