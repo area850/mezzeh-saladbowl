@@ -148,6 +148,7 @@ function Index() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              Bole, Addis Ababa · Salad bar & café
             </span>
             <h1 className="mt-5 font-display text-5xl font-extrabold leading-[0.95] text-balance-tight sm:text-6xl lg:text-7xl">
               Every bowl here is <span className="text-primary">an argument</span> you win with

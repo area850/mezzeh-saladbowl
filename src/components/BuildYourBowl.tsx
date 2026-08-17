@@ -1,6 +1,4 @@
 import { useState } from "react";
-import bowlLoaded from "@/assets/bowl-loaded.png.asset.json";
-import bowlTossed from "@/assets/bowl-tossed.png.asset.json";
 
 type Option = {
   id: string;
@@ -103,37 +101,70 @@ function IngredientSwatch({ option }: { option: Option }) {
 }
 
 function BowlPreview({ picks }: { picks: Record<string, Option | undefined> }) {
-  const tossed = picks['dressing']?.id !== "tahini" || picks['base']?.id === "mixed";
-  const photo = tossed ? bowlTossed.url : bowlLoaded.url;
+  const base = picks['base'];
+  const protein = picks['protein'];
+  const toppings = picks['toppings'];
+  const dressing = picks['dressing'];
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-muted">
-      <img
-        key={photo}
-        src={photo}
-        alt="A freshly made Mezzeh salad bowl"
-        loading="lazy"
-        className="aspect-square w-full animate-drop-in object-cover"
+    <svg viewBox="0 0 320 260" className="h-full w-full" role="img" aria-label="Your bowl preview">
+      <ellipse cx="160" cy="228" rx="112" ry="14" fill="#2f6f36" opacity="0.12" />
+      {base && (
+        <g key={base.id} className="animate-drop-in">
+          <path d="M60 130h200c0 42-38 74-100 74s-100-32-100-74z" fill={base.colors[0]} opacity="0.35" />
+          <circle cx="110" cy="150" r="26" fill={base.colors[0]} />
+          <circle cx="160" cy="142" r="30" fill={base.colors[1]} />
+          <circle cx="210" cy="152" r="26" fill={base.colors[2]} />
+          <circle cx="135" cy="176" r="22" fill={base.colors[1]} />
+          <circle cx="188" cy="178" r="22" fill={base.colors[0]} />
+        </g>
+      )}
+      {protein && (
+        <g key={protein.id} className="animate-drop-in">
+          <rect x="126" y="130" width="70" height="30" rx="12" fill={protein.colors[0]} transform="rotate(-6 161 145)" />
+          <rect x="140" y="152" width="56" height="24" rx="10" fill={protein.colors[1]} transform="rotate(7 168 164)" />
+          <rect x="150" y="126" width="34" height="16" rx="8" fill={protein.colors[2]} opacity="0.9" />
+        </g>
+      )}
+      {toppings && (
+        <g key={toppings.id} className="animate-drop-in">
+          <circle cx="104" cy="160" r="11" fill={toppings.colors[0]} />
+          <circle cx="216" cy="156" r="10" fill={toppings.colors[1]} />
+          <circle cx="132" cy="188" r="9" fill={toppings.colors[2]} />
+          <circle cx="196" cy="190" r="10" fill={toppings.colors[0]} />
+          <circle cx="160" cy="126" r="8" fill={toppings.colors[1]} />
+        </g>
+      )}
+      {dressing && (
+        <g key={dressing.id} className="animate-drop-in">
+          <path
+            d="M92 148c22 18 36-6 58 10s34-10 56 4"
+            stroke={dressing.colors[0]}
+            strokeWidth="9"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.92"
+          />
+          <path
+            d="M104 176c20 12 34-4 52 8s28-6 46 2"
+            stroke={dressing.colors[1]}
+            strokeWidth="6"
+            fill="none"
+            strokeLinecap="round"
+            opacity="0.8"
+          />
+        </g>
+      )}
+      <path d="M52 126h216c0 52-44 88-108 88S52 178 52 126z" fill="#ffffff" opacity="0.06" />
+      <path
+        d="M52 126h216c0 52-44 88-108 88S52 178 52 126z"
+        fill="none"
+        stroke="#2f6f36"
+        strokeOpacity="0.35"
+        strokeWidth="4"
       />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-wrap gap-1.5 bg-gradient-to-t from-black/60 to-transparent p-3">
-        {STEPS.map((s) => {
-          const pick = picks[s.key];
-          if (!pick) return null;
-          return (
-            <span
-              key={s.key}
-              className="flex items-center gap-1.5 rounded-full bg-background/90 px-2.5 py-1 text-xs font-medium"
-            >
-              <span
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: pick.colors[0] }}
-              />
-              {pick.name}
-            </span>
-          );
-        })}
-      </div>
-    </div>
+      <path d="M46 122h228a6 6 0 0 1 0 12H46a6 6 0 0 1 0-12z" fill="#ffffff" stroke="#2f6f36" strokeOpacity="0.35" strokeWidth="3" />
+    </svg>
   );
 }
 
