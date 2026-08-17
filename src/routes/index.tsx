@@ -9,30 +9,27 @@ import omelet from "@/assets/omelet.jpg";
 import hummus from "@/assets/hummus.jpg";
 import chickenBowl from "@/assets/chicken-bowl.jpg";
 import icedLatte from "@/assets/iced-latte.jpg";
+import juicesSmoothies from "@/assets/juice.jpg";
 import interior from "@/assets/interior.jpg";
 
-const PHONE = "+251900000000";
+const PHONE = "+251964666644";
 const WHATSAPP = `https://wa.me/251900000000?text=${encodeURIComponent(
   "Hi Mezzeh! I'd like to reserve a table.",
 )}`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [
+      {
+        rel: "icon",
+        href: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23173D25'/%3E%3Cpath d='M13 31h38c-2 13-9 21-19 21S15 44 13 31Z' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M19 31c3-7 8-11 13-11s11 4 13 11' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M25 20c-2-5 0-8 4-11M39 20c2-4 0-7-3-10' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E",
+      },
+    ],
     meta: [
-      { title: "Mezzeh Salad Bar — Build-Your-Own Salads in Bole, Addis" },
       {
-        name: "description",
-        content:
-          "Fresh build-your-own salad bowls, the famous chicken wrap and proper espresso in Bole, Addis Ababa. Reserve ahead for the lunch rush.",
+        title: "Mezzeh Salad Bar — Build-Your-Own Salads in Bole, Addis",
       },
-      { property: "og:title", content: "Mezzeh Salad Bar — Built Fresh, Your Way" },
-      {
-        property: "og:description",
-        content:
-          "A small, clean, calm salad bar and café in Bole. Choose every ingredient, from base greens to dressing. ETB 800–1,000 per person.",
-      },
-      { property: "og:type", content: "restaurant" },
-      { name: "twitter:card", content: "summary_large_image" },
+      
     ],
   }),
   component: Index,
@@ -61,8 +58,8 @@ const FAVORITES = [
     image: omelet,
   },
   {
-    name: "Hummus Salad",
-    blurb: "Silky hummus, good olive oil, paprika, cucumber and tomato. Vegan, and generous.",
+    name: "Curated Salads",
+    blurb: "Crisp greens, vibrant vegetables, and a light dressing come together for a refreshing everyday salad.",
     tag: "Vegan",
     image: hummus,
   },
@@ -77,6 +74,12 @@ const FAVORITES = [
     blurb: "Alongside the macchiato and mocha iced latte — the coffee side is no afterthought.",
     tag: "Café",
     image: icedLatte,
+  },
+  {
+    name: "Juices & Smoothies",
+    blurb: "Freshly pressed, blended, and served cold. A bright, healthy way to start or finish your meal.",
+    tag: "Café",
+    image: juicesSmoothies,
   },
 ];
 
@@ -146,10 +149,6 @@ function Index() {
       <section id="top" className="px-5 pt-24">
         <div className="mx-auto grid max-w-6xl items-center gap-10 py-12 lg:grid-cols-[1.05fr_1fr] lg:py-20">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              Bole, Addis Ababa · Salad bar & café
-            </span>
             <h1 className="mt-5 font-display text-5xl font-extrabold leading-[0.95] text-balance-tight sm:text-6xl lg:text-7xl">
               Every bowl here is <span className="text-primary">an argument</span> you win with
               yourself.
@@ -174,10 +173,7 @@ function Index() {
                 See the menu
               </a>
             </div>
-            <p className="mt-5 text-sm text-muted-foreground">
-              Lunch fills up fast — a quick message ahead saves you the wait.
-            </p>
-          </div>
+            </div>
 
           <div className="relative">
             <div className="overflow-hidden rounded-[2.5rem] shadow-lift">
@@ -253,25 +249,6 @@ function Index() {
                 </article>
               </Reveal>
             ))}
-            <Reveal delay={350}>
-              <div className="flex h-full flex-col justify-between rounded-3xl bg-leaf-gradient p-6 text-primary-foreground shadow-soft">
-                <div>
-                  <h3 className="font-display text-2xl font-bold">And a drink after five</h3>
-                  <p className="mt-3 font-serif text-sm leading-relaxed opacity-90">
-                    Espresso all day, cocktails when the afternoon slides into evening. Falafel and
-                    fish gulash are quietly excellent too.
-                  </p>
-                </div>
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex w-fit rounded-full bg-background px-5 py-2.5 text-sm font-semibold text-primary"
-                >
-                  Ask us what's on
-                </a>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
@@ -444,20 +421,7 @@ function Index() {
           showSticky ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
         }`}
       >
-        <a
-          href={WHATSAPP}
-          target="_blank"
-          rel="noreferrer"
-          className="mx-auto flex max-w-md items-center justify-between gap-3 rounded-full bg-primary px-5 py-3 text-primary-foreground shadow-lift"
-        >
-          <span className="text-sm">
-            <strong className="font-semibold">Lunch fills up by 12:30</strong>
-          </span>
-          <span className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-accent-foreground">
-            Reserve
-          </span>
-        </a>
-      </div>
+        </div>
     </div>
   );
 }
