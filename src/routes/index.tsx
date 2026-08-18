@@ -26,11 +26,22 @@ export const Route = createFileRoute("/")({
       },
     ],
     meta: [
+      { title: "Mezzeh Salad Bar — Build-Your-Own Salads in Bole, Addis" },
       {
-        title: "Mezzeh Salad Bar — Build-Your-Own Salads in Bole, Addis",
+        name: "description",
+        content:
+          "Fresh, made-to-order salad bowls in Bole, Addis Ababa. Build your own bowl from crisp greens, proteins, toppings and house dressings — then order on WhatsApp.",
       },
-      
+      { property: "og:title", content: "Mezzeh Salad Bar — Build-Your-Own Salads in Bole" },
+      {
+        property: "og:description",
+        content:
+          "Fresh, made-to-order salad bowls in Bole, Addis Ababa. Build your bowl and order on WhatsApp.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+
   }),
   component: Index,
 });
